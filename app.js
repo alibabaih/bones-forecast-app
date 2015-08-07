@@ -15,27 +15,14 @@ myApp.controller('mainController', ['$scope', '$filter', '$timeout', function($s
         return $filter('lowercase')($scope.handle);
     };
     
-    $scope.$watch('handle', function(newValue, oldValue) {
-        console.info('Changed!');
-        console.log('Old value: ' + oldValue);
-        console.log('New value: ' + newValue);
-    });
+    $scope.characters = 5;
     
-    setTimeout(function() {
-        //$apply is used to execute an expression in angular from outside of the angular framework
-        $scope.$apply(function() {
-            $scope.handle = 'newHandle';
-            console.log('Scope changed');
-        });
-        
-    }, 3000);
+    $scope.rules = [
+        {rulename: "Must be 5 characters"},
+        {rulename: "Must not be used elsewhere"},
+        {rulename: "Must be cool"}
+    ];
     
-    // OR //
-    
-//    $timeout(function() {
-//        //$apply is used to execute an expression in angular from outside of the angular framework
-//        $scope.handle = 'newHandle';
-//        console.log('Scope changed');
-//    }, 3000);
+    console.log($scope.rules);
     
 }]);
