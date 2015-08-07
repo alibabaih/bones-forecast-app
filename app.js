@@ -1,23 +1,13 @@
-myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', []);
 
-myApp.controller('mainController', ['$scope', '$filter', '$http', function($scope, $filter, $http) {
+myApp.controller('mainController', ['$scope', function($scope) {
     
-    $scope.handle = 'sdf';
+    $scope.name = 'Vasiliy';
     
-    $scope.lowercasehandle = function() {
-        return $filter('lowercase')($scope.handle);
-    };
+}]);
+
+myApp.controller('secondController', ['$scope', function($scope) {
     
-    $scope.charactes = 5;
-    
-    $http.get('/api')
-        .success(function(result) {
-            $scope.rules = result;
-        })
-        .error(function(data, status) {
-            console.log(data);
-        });
-    
-    $http.post();
+    $scope.name = 'Ivan';
     
 }]);
