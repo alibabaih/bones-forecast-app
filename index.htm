@@ -36,11 +36,11 @@
         <div class="container">
             
             <div ng-controller="mainController" class="row">
+                <p>{{ handle }}</p>
                 
-                <input type="button" value="Click me" ng-click="alertClick()" />
-                <br />
-                <div> {{ name }}</div>
-                
+                Add rule: 
+                <input type="text" ng-model="newRule" />
+                <a href="#" class="btn btn-default" ng-click="addRule()">Send</a>
             </div>
             
 		</div>

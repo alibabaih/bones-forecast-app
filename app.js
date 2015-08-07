@@ -1,18 +1,23 @@
-//var tb = document.getElementById("name");
-//
-//tb.addEventListener("keypress",
-//    function(event) {
-//        console.log("Pressed!");
-//    });
-
 myApp = angular.module('myApp', []);
 
-myApp.controller('mainController', ['$scope', '$filter', '$timeout', function($scope, $filter, $timeout) {
+myApp.controller('mainController', ['$scope', '$filter', '$http', function($scope, $filter, $http) {
     
-    $scope.alertClick = function() {
-        alert('clicked');
+    $scope.handle = 'sdf';
+    
+    $scope.lowercasehandle = function() {
+        return $filter('lowercase')($scope.handle);
     };
     
-    $scope.name = 'John Doe';
+    $scope.charactes = 5;
+    
+    $http.get('/api')
+        .success(function(result) {
+            $scope.rules = result;
+        })
+        .error(function(data, status) {
+            console.log(data);
+        });
+    
+    $http.post();
     
 }]);
