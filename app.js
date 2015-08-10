@@ -1,16 +1,19 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.config(function($routeProvider) {
-
+myApp.config(function ($routeProvider) {
+    
     $routeProvider
+    
     .when('/', {
         templateUrl: 'pages/main.html',
         controller: 'mainController'
     })
+    
     .when('/second', {
         templateUrl: 'pages/second.html',
         controller: 'secondController'
     })
+    
     .when('/second/:num', {
         templateUrl: 'pages/second.html',
         controller: 'secondController'
@@ -18,44 +21,22 @@ myApp.config(function($routeProvider) {
     
 });
 
-myApp.service('nameService', function() {
+myApp.controller('mainController', ['$scope', '$log', function($scope, $log) {
     
-    var self = this;
-    this.name = 'John Doe';
     
-    this.nameLength = function() {
-        return self.name.length;
-    }
     
+}]);
+
+myApp.controller('secondController', ['$scope', '$log', '$routeParams', function($scope, $log, $routeParams) {
+    
+    
+    
+}]);
+
+myApp.directive("searchResult", function() {
+   return {
+       restrict: 'AECM',
+       templateUrl: 'directives/searchresult.html',
+       replace: true
+   }
 });
-
-
-myApp.controller('mainController', ['$scope', '$log', 'nameService', function($scope, $log, nameService) {
-    
-    $scope.name = nameService.name;
-    
-    $scope.$watch('name', function() {
-        nameService.name = $scope.name;
-    });
-    
-    $log.log(nameService.name);
-    $log.log(nameService.nameLength());
-    
-}]);
-
-
-myApp.controller('secondController', ['$scope', '$log', '$routeParams', 'nameService', function($scope, $log, $routeParams, nameService) {
-    
-    //$scope.name = 'Second';
-    $scope.name = nameService.name;
-    $scope.$watch('name', function() {
-        nameService.name = $scope.name;
-    });
-    
-    $scope.num = $routeParams.num || 1;
-    
-    $log.second = 'Property from second';
-    
-
-    
-}]);
